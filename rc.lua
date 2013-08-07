@@ -81,7 +81,7 @@ active_theme = themes .. "/multicolor"
 -- Themes define colours, icons, and wallpapers
 beautiful.init(active_theme .. "/theme.lua")
 
-terminal = "xterm"
+terminal = "gnome-terminal"
 -- editor = os.getenv("EDITOR")
 editor = "/usr/bin/gvim"
 editor_cmd = terminal .. " -e " .. editor
@@ -132,7 +132,7 @@ end
 
 -- Define a tag table which hold all screen tags.
 tags = {
-       names = { "web", "term", "docs", "media", "files", "other" },       
+       names = { "web", "term", "IM", "files", "media", "other" },       
        layout = { layouts[1], layouts[3], layouts[4], layouts[1], layouts[7], layouts[1] } 
        }
 for s = 1, screen.count() do
@@ -765,11 +765,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,	          }, "z",     function () scratch.drop(terminal) end),
     
     -- Volume control
-    awful.key({ "Control" }, "Up", function ()
+    awful.key({ modkey,         }, "Up", function ()
                                        awful.util.spawn("amixer set Master playback 1%+", false )
                                        vicious.force({ volumewidget })
                                    end),
-    awful.key({ "Control" }, "Down", function ()
+    awful.key({ modkey,         }, "Down", function ()
                                        awful.util.spawn("amixer set Master playback 1%-", false )
                                        vicious.force({ volumewidget })
                                      end),
@@ -801,14 +801,14 @@ globalkeys = awful.util.table.join(
                                               end ),
 
     -- Copy to clipboard
-    awful.key({ modkey,        }, "c",      function () os.execute("xsel -p -o | xsel -i -b") end),
+    -- awful.key({ modkey,        }, "c",      function () os.execute("xsel -p -o | xsel -i -b") end),
 
-    -- User programs
-    awful.key({ modkey,        }, "q",      function () awful.util.spawn( "dwb", false ) end),
-    awful.key({ modkey,        }, "a",      function () awful.util.spawn( "midori", false ) end),
-    awful.key({ modkey,        }, "s",      function () awful.util.spawn(gui_editor) end),
-    awful.key({ modkey, 	     }, "t", 	    function () awful.util.spawn( "thunderbird", false ) end),
-    awful.key({ modkey,        }, "d", 	    function () awful.util.spawn( "spacefm", false ) end),
+    -- -- User programs
+    -- awful.key({ modkey,        }, "q",      function () awful.util.spawn( "dwb", false ) end),
+    -- awful.key({ modkey,        }, "a",      function () awful.util.spawn( "midori", false ) end),
+    -- awful.key({ modkey,        }, "s",      function () awful.util.spawn(gui_editor) end),
+    -- awful.key({ modkey, 	     }, "t", 	    function () awful.util.spawn( "thunderbird", false ) end),
+    -- awful.key({ modkey,        }, "d", 	    function () awful.util.spawn( "spacefm", false ) end),
     
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
@@ -824,7 +824,7 @@ globalkeys = awful.util.table.join(
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+    awful.key({ modkey,           }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),

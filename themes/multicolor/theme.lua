@@ -17,7 +17,7 @@ theme.menu_bg_focus = "#000000"
 
 theme.bg_normal = "#000000"
 theme.bg_focus  = "#000000"
-theme.bg_urgent = "#000000"
+theme.bg_urgent = "#ff0000"
 
 theme.fg_normal = "#aaaaaa"
 theme.fg_focus  = "#ff8c00"
@@ -38,7 +38,7 @@ theme.fg_blu        = "#8ebdde"
 
 theme.border_width  = "1"
 theme.border_normal = "#1c2022"
-theme.border_focus  = "#606060"
+theme.border_focus  = "#00DAFF"
 theme.border_marked = "#3ca4d8"
 
 theme.menu_width = "110"
