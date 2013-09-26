@@ -132,7 +132,7 @@ end
 
 -- Define a tag table which hold all screen tags.
 tags = {
-       names = { "web", "term", "IM", "files", "media", "other" },       
+       names = { "[1] web", "[2] term", "[3] IM", "[4] files", "[5] media", "[6] other" },       
        layout = { layouts[1], layouts[3], layouts[4], layouts[1], layouts[7], layouts[1] } 
        }
 for s = 1, screen.count() do
@@ -491,12 +491,12 @@ netdownicon = wibox.widget.imagebox()
 netdownicon:set_image(beautiful.widget_netdown)
 netdownicon.align = "middle"
 netdowninfo = wibox.widget.textbox()
-vicious.register(netdowninfo, vicious.widgets.net, green .. "${wlan0 down_kb}" .. coldef, 1)
+vicious.register(netdowninfo, vicious.widgets.net, green .. "${eth0 down_kb}" .. coldef, 1)
 netupicon = wibox.widget.imagebox()
 netupicon:set_image(beautiful.widget_netup)
 netupicon.align = "middle"
 netupinfo = wibox.widget.textbox()
-vicious.register(netupinfo, vicious.widgets.net, red .. "${wlan0 up_kb}" .. coldef, 1)
+vicious.register(netupinfo, vicious.widgets.net, red .. "${eth0 up_kb}" .. coldef, 1)
 
 -- Memory widget
 memicon = wibox.widget.imagebox()
@@ -726,6 +726,17 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
+    awful.key({ modkey,           }, "a",
+        function ()
+            awful.client.focus.byidx( 1)
+            if client.focus then client.focus:raise() end
+        end),
+    awful.key({ modkey,           }, "s",
+        function ()
+            awful.client.focus.byidx(-1)
+            if client.focus then client.focus:raise() end
+        end),
+
     awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Show/Hide Wibox
