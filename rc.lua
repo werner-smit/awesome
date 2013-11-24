@@ -104,13 +104,13 @@ layouts =
 {
     awful.layout.suit.floating,             -- 1
     awful.layout.suit.tile,                 -- 2
-    awful.layout.suit.tile.left,            -- 3
-    awful.layout.suit.tile.bottom,          -- 4
+    --awful.layout.suit.tile.left,            -- 3
+    --awful.layout.suit.tile.bottom,          -- 4
     awful.layout.suit.tile.top,             -- 5
     awful.layout.suit.fair,                 -- 6
-    awful.layout.suit.fair.horizontal,      -- 7
-    awful.layout.suit.spiral,               -- 8
-    awful.layout.suit.spiral.dwindle,       -- 9
+    -- awful.layout.suit.fair.horizontal,      -- 7
+    -- awful.layout.suit.spiral,               -- 8
+    -- awful.layout.suit.spiral.dwindle,       -- 9
     awful.layout.suit.max,                  -- 10
     --awful.layout.suit.max.fullscreen,     -- 11
     --awful.layout.suit.magnifier           -- 12
@@ -132,8 +132,8 @@ end
 
 -- Define a tag table which hold all screen tags.
 tags = {
-       names = { "[1] web", "[2] term", "[3] IM", "[4] files", "[5] media", "[6] other" },       
-       layout = { layouts[1], layouts[3], layouts[4], layouts[1], layouts[7], layouts[1] } 
+       names = { "web", "term", "IM", "files", "media", "other" },       
+       layout = { layouts[4], layouts[5], layouts[2], layouts[1], layouts[4], layouts[1] } 
        }
 for s = 1, screen.count() do
 -- Each screen has its own tag table.
@@ -491,12 +491,12 @@ netdownicon = wibox.widget.imagebox()
 netdownicon:set_image(beautiful.widget_netdown)
 netdownicon.align = "middle"
 netdowninfo = wibox.widget.textbox()
-vicious.register(netdowninfo, vicious.widgets.net, green .. "${eth0 down_kb}" .. coldef, 1)
+vicious.register(netdowninfo, vicious.widgets.net, green .. "${wlan0 down_kb}" .. coldef, 1)
 netupicon = wibox.widget.imagebox()
 netupicon:set_image(beautiful.widget_netup)
 netupicon.align = "middle"
 netupinfo = wibox.widget.textbox()
-vicious.register(netupinfo, vicious.widgets.net, red .. "${eth0 up_kb}" .. coldef, 1)
+vicious.register(netupinfo, vicious.widgets.net, red .. "${wlan0 up_kb}" .. coldef, 1)
 
 -- Memory widget
 memicon = wibox.widget.imagebox()
@@ -615,8 +615,8 @@ for s = 1, screen.count() do
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
     --left_layout:add(spacer)
-    left_layout:add(mpdicon)
-    left_layout:add(mpdwidget)
+    -- left_layout:add(mpdicon)
+    -- left_layout:add(mpdwidget)
     --left_layout:add(spacer)
 
     -- Widgets that are aligned to the upper right
@@ -810,7 +810,8 @@ globalkeys = awful.util.table.join(
                                                 awful.util.spawn( "mpc next", false )
                                                 vicious.force({ mpdwidget } )
                                               end ),
-
+    awful.key({ modkey,        }, ".", 	    function () awful.util.spawn( "wine /home/werner/apps/foobar2000/foobar2000.exe /next", false ) end),
+    awful.key({ modkey,        }, ",", 	    function () awful.util.spawn( "wine /home/werner/apps/foobar2000/foobar2000.exe /prev", false ) end),
     -- Copy to clipboard
     -- awful.key({ modkey,        }, "c",      function () os.execute("xsel -p -o | xsel -i -b") end),
 

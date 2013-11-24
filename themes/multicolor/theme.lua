@@ -16,13 +16,14 @@ theme.menu_bg_normal = "#000000"
 theme.menu_bg_focus = "#000000"
 
 theme.bg_normal = "#000000"
-theme.bg_focus  = "#000000"
+theme.bg_focus  = "#333333"
 theme.bg_urgent = "#ff0000"
+theme.bg_minimize   = "#000000"
 
 theme.fg_normal = "#aaaaaa"
 theme.fg_focus  = "#ff8c00"
 theme.fg_urgent = "#af1d18"
-theme.fg_minimize   = "#ffffff"
+theme.fg_minimize   = "#333333"
 
 theme.mouse_finder_color = "#afa72e"
 
@@ -42,9 +43,10 @@ theme.border_focus  = "#00DAFF"
 theme.border_marked = "#3ca4d8"
 
 theme.menu_width = "110"
-theme.menu_border_width  = "0"
+theme.menu_border_width  = "2"
 theme.menu_fg_normal = "#aaaaaa"
-theme.menu_fg_focus =  "#ff8c00"
+-- theme.menu_fg_focus =  "#ff8c00"
+theme.menu_fg_focus =  "#ff0000"
 theme.menu_bg_normal = "#050505dd"
 theme.menu_bg_focus  = "#050505dd"
 theme.menu_submenu_icon  = theme.confdir .. "/submenu.png"
@@ -65,7 +67,7 @@ theme.taglist_squares_sel   = theme.confdir .. "/taglist/square_a.png"
 theme.taglist_squares_unsel = theme.confdir .. "/taglist/square_b.png"
 
 theme.tasklist_floating = ""
-theme.tasklist_maximized_horizontal = ""
+theme.tasklist_maximized_horizontal = " <span weight='bold'>[M]</span> "
 theme.tasklist_maximized_vertical = "" 
 
 theme.layout_tile       = theme.confdir .. "/layouts/tile.png"
