@@ -33,6 +33,10 @@ function run_once(cmd)
 
 run_once("unclutter -idle 10")
 run_once("xcompmgr")
+run_once("gnome-do")
+run_once("gnome-settings-daemon")
+run_once("nm-applet")
+
 
 -- }}}
 
