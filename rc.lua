@@ -94,6 +94,7 @@ browser = "dwb"
 mail = terminal .. " -e mutt "
 chat = terminal .. " -e irssi "
 tasks = terminal .. " -e htop "
+lockscreen = "xtrlock"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -136,7 +137,7 @@ end
 
 -- Define a tag table which hold all screen tags.
 tags = {
-       names = { "web", "term", "IM", "files", "media", "other" },       
+       names = { "term", "web", "IM", "files", "media", "other" },       
        layout = { layouts[4], layouts[5], layouts[2], layouts[1], layouts[4], layouts[1] } 
        }
 for s = 1, screen.count() do
@@ -625,7 +626,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the upper right
     local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
+    if s == 1 then right_layout:add(wibox.widget.systray()) 
     right_layout:add(netdownicon)
     right_layout:add(netdowninfo)
     right_layout:add(spacer)
@@ -638,18 +639,18 @@ for s = 1, screen.count() do
     right_layout:add(memicon)
     right_layout:add(memwidget)
     right_layout:add(spacer)
-    right_layout:add(cpuicon)
-    right_layout:add(cpuwidget)
-    right_layout:add(spacer)
-    right_layout:add(fshicon)
-    right_layout:add(fshwidget)
-    right_layout:add(spacer)
-    right_layout:add(uptimeicon)
-    right_layout:add(uptimewidget) 
-    right_layout:add(spacer)
-    right_layout:add(weathericon)
-    right_layout:add(weatherwidget)
-    right_layout:add(spacer)
+    -- right_layout:add(cpuicon)
+    -- right_layout:add(cpuwidget)
+    -- right_layout:add(spacer)
+    -- right_layout:add(fshicon)
+    --- right_layout:add(fshwidget)
+    -- right_layout:add(spacer)
+    -- right_layout:add(uptimeicon)
+    -- right_layout:add(uptimewidget) 
+    -- right_layout:add(spacer)
+    -- right_layout:add(weathericon)
+    -- right_layout:add(weatherwidget)
+    -- right_layout:add(spacer)
     right_layout:add(tempicon)
     right_layout:add(tempwidget)
     right_layout:add(spacer)
@@ -662,7 +663,7 @@ for s = 1, screen.count() do
     right_layout:add(clockicon)
     right_layout:add(mytextclock)
     --right_layout:add(mylayoutbox[s])
-
+end
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
@@ -776,6 +777,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1)  end),
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
+    awful.key({ modkey,           }, "l", function () awful.util.spawn(lockscreen) end),
+
     -- Dropdown terminal
     awful.key({ modkey,	          }, "z",     function () scratch.drop(terminal) end),
     
@@ -788,32 +791,32 @@ globalkeys = awful.util.table.join(
                                        awful.util.spawn("amixer set Master playback 1%-", false )
                                        vicious.force({ volumewidget })
                                      end),
-    awful.key({ "Control" }, "m", function ()
-                                       awful.util.spawn("amixer set Master playback toggle", false )
-                                       vicious.force({ volumewidget })
-                                     end),
-    awful.key({ altkey, "Control" }, "m", function () 
-                                              awful.util.spawn("amixer set Master playback 100%", false )
-                                              vicious.force({ volumewidget })
-                                          end),
-
-    -- Music control
-    awful.key({ altkey, "Control" }, "Up", function () 
-                                              awful.util.spawn( "mpc toggle", false ) 
-                                              vicious.force({ mpdwidget } )
-                                           end),
-    awful.key({ altkey, "Control" }, "Down", function () 
-                                                awful.util.spawn( "mpc stop", false ) 
-                                                vicious.force({ mpdwidget } )
-                                             end ),
-    awful.key({ altkey, "Control" }, "Left", function ()
-                                                awful.util.spawn( "mpc prev", false )
-                                                vicious.force({ mpdwidget } )
-                                             end ),
-    awful.key({ altkey, "Control" }, "Right", function () 
-                                                awful.util.spawn( "mpc next", false )
-                                                vicious.force({ mpdwidget } )
-                                              end ),
+--    awful.key({ "Control" }, "m", function ()
+--                                       awful.util.spawn("amixer set Master playback toggle", false )
+--                                       vicious.force({ volumewidget })
+--                                     end),
+--    awful.key({ altkey, "Control" }, "m", function () 
+--                                              awful.util.spawn("amixer set Master playback 100%", false )
+--                                              vicious.force({ volumewidget })
+--                                          end),
+--
+--    -- Music control
+--    awful.key({ altkey, "Control" }, "Up", function () 
+--                                              awful.util.spawn( "mpc toggle", false ) 
+--                                              vicious.force({ mpdwidget } )
+--                                           end),
+--    awful.key({ altkey, "Control" }, "Down", function () 
+--                                                awful.util.spawn( "mpc stop", false ) 
+--                                                vicious.force({ mpdwidget } )
+--                                             end ),
+--    awful.key({ altkey, "Control" }, "Left", function ()
+--                                                awful.util.spawn( "mpc prev", false )
+--                                                vicious.force({ mpdwidget } )
+--                                             end ),
+--    awful.key({ altkey, "Control" }, "Right", function () 
+--                                                awful.util.spawn( "mpc next", false )
+--                                                vicious.force({ mpdwidget } )
+--                                              end ),
     awful.key({ modkey,        }, ".", 	    function () awful.util.spawn( "wine /home/werner/apps/foobar2000/foobar2000.exe /next", false ) end),
     awful.key({ modkey,        }, ",", 	    function () awful.util.spawn( "wine /home/werner/apps/foobar2000/foobar2000.exe /prev", false ) end),
     -- Copy to clipboard
@@ -956,7 +959,16 @@ awful.rules.rules = {
         properties = {opacity = 0.8} },
 
     {rule = {class = "Gvim"}, 
-        properties = {opacity = 0.9} }
+        properties = {opacity = 0.9} },
+
+    {rule = {class = "Skype"}, 
+        properties = { tag = tags[1][3] } },
+
+    {rule = {class = "Wine"}, 
+        properties = { tag = tags[1][5] } },
+
+    { rule = { class = "Google-chrome" },
+          properties = { tag = tags[1][2] } }
 }
 
 -- }}}
