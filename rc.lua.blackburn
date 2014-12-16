@@ -17,7 +17,7 @@ local beautiful       = require("beautiful")
 local naughty         = require("naughty")
 local vicious         = require("vicious")
 local scratch         = require("scratch")
-local yawn            = require("yawn")
+-- local yawn            = require("yawn")
 
 -- Run once function
 
@@ -79,7 +79,7 @@ language = string.gsub(os.getenv("LANG"), ".utf8", "")
 beautiful.init(active_theme .. "/theme.lua")
 
 terminal = "urxvtc"
-editor = os.getenv("EDITOR")
+editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
 gui_editor = "gvim"
 browser = "dwb"
@@ -364,7 +364,7 @@ function(widget, args)
             replaces_id = old_id
         }).id
     end
-   if yawn.icon == yawn.sky_na then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. " " .. coldef
+   if false then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. " " .. coldef
     elseif mailcount == 0 then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. "<span font='Tamsyn 8'>  <span font ='Tamsyn 2'> </span></span>" .. coldef
     else return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef .. "<span font='Tamsyn 8'> <span font='Tamsyn 2'> </span></span>" 
     end
@@ -528,7 +528,7 @@ end, 10)
 netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(wifi) end)))
 
 -- Weather widget
-yawn.register(123456) -- https//github.com/copycat-killer/yawn
+-- yawn.register(123456) -- https//github.com/copycat-killer/yawn
 
 -- Separators
 spr = wibox.widget.textbox(' ')
@@ -625,8 +625,8 @@ for s = 1, screen.count() do
     right_layout:add(first)
     right_layout:add(mpdwidget)
     right_layout:add(mygmail)
-    right_layout:add(yawn.icon)
-    right_layout:add(yawn.widget)
+    -- right_layout:add(yawn.icon)
+    -- right_layout:add(yawn.widget)
     right_layout:add(fshwidget)
     right_layout:add(batwidget)
     right_layout:add(netwidget)
@@ -725,7 +725,7 @@ globalkeys = awful.util.table.join(
                                                 vicious.force({ fshwidget })
                                                 show_info(7)
                                               end),
-    awful.key({ altkey,           }, "w",     function () yawn.show_weather(5) end),
+    -- awful.key({ altkey,           }, "w",     function () yawn.show_weather(5) end),
 
     -- Volume control
     awful.key({ altkey }, "Up", function ()

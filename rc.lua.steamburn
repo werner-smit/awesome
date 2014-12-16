@@ -77,7 +77,7 @@ active_theme = themes .. "/steamburn"
 beautiful.init(active_theme .. "/theme.lua")
 
 terminal = "urxvtc"
-editor = os.getenv("EDITOR")
+editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
 gui_editor = "geany -ps"
 browser = "dwb"
@@ -840,6 +840,9 @@ awful.rules.rules = {
 	                  size_hints_honor = false
                      }
     },
+
+    { rule = { class = "Google-chrome-stable" },
+      properties = {opacity = 0.9} },
 
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
